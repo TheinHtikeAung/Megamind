@@ -15,6 +15,7 @@ public class MainActivity extends Activity {
 		Log.i("Testing", "testing");
 		Log.i("Testing", "testing2");
 		Log.i("Testing", "testing3");
+		Log.i("Testing", "testing4");
 	}
 
 	@Override
