@@ -1,22 +1,18 @@
 package com.theinhtikeaung.megamind;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_main);
 		
-		Log.i("Testing", "testing");
-		Log.i("Testing", "testing2");
-		Log.i("Testing", "testing3");
-		Log.i("Testing", "testing4");
-		Log.i("Testing", "testing5");
+		
 	}
 
 	@Override
@@ -25,5 +21,4 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
 }
