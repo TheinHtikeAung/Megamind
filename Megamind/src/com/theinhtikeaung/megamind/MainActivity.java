@@ -1,6 +1,5 @@
 package com.theinhtikeaung.megamind;
 
-import android.R.anim;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
@@ -8,18 +7,35 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
-	@Override
+		@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		
+		// Needs to be called before setting the content view
+		supportRequestWindowFeature(Window.FEATURE_PROGRESS);
+		
+//	    supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
+	    // Now set the content view
+	    setContentView(R.layout.activity_main);
+	    
+	    // When ready, show the indeterminate progress bar
+//	    setSupportProgressBarIndeterminateVisibility(true);
+
+	    setSupportProgressBarIndeterminate(true); 
+//	    setProgressBarIndeterminate(true);
+	    setSupportProgressBarVisibility(true);
 	}
 
 	private ShareActionProvider mShareActionProvider;
 
+
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -29,6 +45,8 @@ public class MainActivity extends ActionBarActivity {
 	    MenuItem shareItem = menu.findItem(R.id.actoin_search);
 	    mShareActionProvider = (ShareActionProvider)MenuItemCompat.getActionProvider(shareItem);
 	    mShareActionProvider.setShareIntent(getDefaultIntent());
+	    
+	    
 		
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -40,7 +58,12 @@ public class MainActivity extends ActionBarActivity {
 	  */
 	private Intent getDefaultIntent() {
 	    Intent intent = new Intent(Intent.ACTION_SEND);
-	    intent.setType("image/*");
+	      
+	    intent.putExtra(Intent.EXTRA_SUBJECT, "Voice Title"); 
+	    
+//	    intent.setType("image/*");
+	    intent.setType("text/plain");  
+        intent.putExtra(Intent.EXTRA_TEXT,  "http://theinhtikeaung.com");  
 	    return intent;
 	}
 	
@@ -49,11 +72,12 @@ public class MainActivity extends ActionBarActivity {
 	    switch (item.getItemId()) {
 	        case R.id.actoin_search:
 	        	//Toast.makeText(this, "Search Menu is selected", Toast.LENGTH_LONG).show();
-	        	startActivity(new Intent(this, SecondActivity.class));
+	        	
 	            return true;
 	        case R.id.action_phone:
 	            //composeMessage();
-	        	Toast.makeText(this, "Phone Menu is selected", Toast.LENGTH_LONG).show();
+	        	//Toast.makeText(this, "Phone Menu is selected", Toast.LENGTH_LONG).show();
+	        	startActivity(new Intent(this, SecondActivity.class));
 	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
